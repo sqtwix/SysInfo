@@ -3,17 +3,18 @@ package hardwareAnalyzer;
 import java.util.Properties;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
+import java.io.File;
 
 public class HardwareAnalyzer {
 
-    // Info about OS, OS user, Java runtime
+    // Printing info about OS, OS user, Java runtime
     public void printBasicSystemInfo() {
         Properties props = System.getProperties();
         Runtime runtime = Runtime.getRuntime();
 
         printLine();
-        System.out.println("===BASIC SYSTEM INFO===");
-        System.out.println("Operation system: " + props.getProperty("os.name"));
+        printTitle("SYSTEM INFO");
+        System.out.printf("\nOperation system: " + props.getProperty("os.name") + "\n");
         System.out.println("OS version: " + props.getProperty("os.version"));
         System.out.println("OS architecture: " + props.getProperty("os.arch"));
 
@@ -26,13 +27,13 @@ public class HardwareAnalyzer {
         printLine();
     }
 
-    // Info about CPU
+    // Printing info about CPU
     public void printCpuInfo() {
         Runtime runtime = Runtime.getRuntime();
 
         System.out.println();
         printLine();
-        System.out.printf("===CPU INFO===\n");
+        printTitle("CPU INFO");
         int cores = Runtime.getRuntime().availableProcessors();
         System.out.println("Count of cores: " + cores);
 
@@ -47,7 +48,30 @@ public class HardwareAnalyzer {
         printLine();
     }
 
+
+    // Printing info about disks
+    public void printDiskInfo() {
+
+        System.out.println();
+        printLine();
+        printTitle("DISK INFO");
+
+        File[] roots = File.listRoots();
+        for (File root:roots){
+            System.out.printf("\nDick: " + root.getAbsolutePath() + "\n");
+            System.out.println("Volume: " + root.getTotalSpace());
+            System.out.println("Free space: " + root.getFreeSpace());
+            System.out.println("Usable space: "+ root.getUsableSpace());
+        }
+
+        printLine();
+    }
+
     public void printLine() {
-        System.out.println("__________________________________________");
+        System.out.println("-".repeat(40));
+    }
+
+    public void printTitle(String name) {
+        System.out.printf("===" + name.toUpperCase() + "===");
     }
 }

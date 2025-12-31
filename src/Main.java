@@ -4,7 +4,6 @@
 import hardwareAnalyzer.*;
 
 public final String CYAN = "\u001B[36m";
-public final String BLUE = "\u001B[34m";
 public static final String RESET = "\u001B[0m";
 
 
@@ -15,8 +14,9 @@ void main() {
 
     analyzer.printBasicSystemInfo();
     analyzer.printCpuInfo();
+    analyzer.printDiskInfo();
 }
 
 public void printHeadLabel() {
-    System.out.println(CYAN + "    ===SysInfo===" + RESET);
+    System.out.println(CYAN + "===SysInfo===" + RESET);
 }
