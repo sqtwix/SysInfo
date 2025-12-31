@@ -78,6 +78,4 @@ public class HardwareAnalyzer {
     public long convertFromBytesToMegaBites(long value) {
         return value / 1024 / 1024;
     }
-
-
 }
