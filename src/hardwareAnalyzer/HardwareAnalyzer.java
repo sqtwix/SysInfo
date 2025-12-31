@@ -24,10 +24,21 @@ public class HardwareAnalyzer {
         System.out.println("Java runtime version: " + System.getProperty("java.runtime.version"));
     }
 
+    // Info about CPU
+    public void printCpuInfo() {
+        Runtime runtime = Runtime.getRuntime();
 
-    public void printCpuInfo(){
+        System.out.println("===CPU INFO===");
+        int cores = Runtime.getRuntime().availableProcessors();
+        System.out.printf("Count of cores" + cores);
 
+        // load average for last min
+        OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
+        double loadAverage = osBean.getSystemLoadAverage();
+        if (loadAverage >= 0) {
+            System.out.printf("Avarage load: %.2f%n", loadAverage);
+        } else {
+            System.out.println("Avarage load is unavailable");
+        }
     }
-
-
 }
