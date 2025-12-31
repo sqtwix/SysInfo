@@ -35,7 +35,7 @@ public class HardwareAnalyzer {
         printLine();
         printTitle("CPU INFO");
         int cores = Runtime.getRuntime().availableProcessors();
-        System.out.println("Count of cores: " + cores);
+        System.out.printf("\nCount of cores: " + cores + "\n");
 
         // load average for last min
         OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
@@ -57,11 +57,11 @@ public class HardwareAnalyzer {
         printTitle("DISK INFO");
 
         File[] roots = File.listRoots();
-        for (File root:roots){
+        for (File root : roots) {
             System.out.printf("\nDick: " + root.getAbsolutePath() + "\n");
-            System.out.println("Volume: " + root.getTotalSpace());
-            System.out.println("Free space: " + root.getFreeSpace());
-            System.out.println("Usable space: "+ root.getUsableSpace());
+            System.out.println("Volume: " + convertFromBytesToMegaBites(root.getTotalSpace()) + " MB");
+            System.out.println("Free space: " + convertFromBytesToMegaBites(root.getFreeSpace()) + " MB");
+            System.out.println("Usable space: " + convertFromBytesToMegaBites(root.getUsableSpace()) + " MB");
         }
 
         printLine();
@@ -74,4 +74,10 @@ public class HardwareAnalyzer {
     public void printTitle(String name) {
         System.out.printf("===" + name.toUpperCase() + "===");
     }
+
+    public long convertFromBytesToMegaBites(long value) {
+        return value / 1024 / 1024;
+    }
+
+
 }
